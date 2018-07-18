@@ -4,222 +4,222 @@ using System.Security.AccessControl;
 namespace System.IO.Abstractions
 {
     [Serializable]
-    public class DirectoryWrapper : DirectoryBase
+    public class DirectoryWrapper : IDirectory
     {
-        public override DirectoryInfoBase CreateDirectory(string path)
+        public IDirectoryInfo CreateDirectory(string path)
         {
             return Directory.CreateDirectory(path);
         }
 
 #if NET40
-        public override DirectoryInfoBase CreateDirectory(string path, DirectorySecurity directorySecurity)
+        public IDirectoryInfo CreateDirectory(string path, DirectorySecurity directorySecurity)
         {
             return Directory.CreateDirectory(path, directorySecurity);
         }        
 #endif
-        public override void Delete(string path)
+        public void Delete(string path)
         {
             Directory.Delete(path);
         }
 
-        public override void Delete(string path, bool recursive)
+        public void Delete(string path, bool recursive)
         {
             Directory.Delete(path, recursive);
         }
 
-        public override bool Exists(string path)
+        public bool Exists(string path)
         {
             return Directory.Exists(path);
         }
 
-        public override DirectorySecurity GetAccessControl(string path)
+        public DirectorySecurity GetAccessControl(string path)
         {
             return new DirectoryInfo(path).GetAccessControl();
         }
 
-        public override DirectorySecurity GetAccessControl(string path, AccessControlSections includeSections)
+        public DirectorySecurity GetAccessControl(string path, AccessControlSections includeSections)
         {
             return new DirectoryInfo(path).GetAccessControl(includeSections);
         }
 
-        public override DateTime GetCreationTime(string path)
+        public DateTime GetCreationTime(string path)
         {
             return Directory.GetCreationTime(path);
         }
 
-        public override DateTime GetCreationTimeUtc(string path)
+        public DateTime GetCreationTimeUtc(string path)
         {
             return Directory.GetCreationTimeUtc(path);
         }
 
-        public override string GetCurrentDirectory()
+        public string GetCurrentDirectory()
         {
             return Directory.GetCurrentDirectory();
         }
 
-        public override string[] GetDirectories(string path)
+        public string[] GetDirectories(string path)
         {
             return Directory.GetDirectories(path);
         }
 
-        public override string[] GetDirectories(string path, string searchPattern)
+        public string[] GetDirectories(string path, string searchPattern)
         {
             return Directory.GetDirectories(path, searchPattern);
         }
 
-        public override string[] GetDirectories(string path, string searchPattern, SearchOption searchOption)
+        public string[] GetDirectories(string path, string searchPattern, SearchOption searchOption)
         {
             return Directory.GetDirectories(path, searchPattern, searchOption);
         }
 
-        public override string GetDirectoryRoot(string path)
+        public string GetDirectoryRoot(string path)
         {
             return Directory.GetDirectoryRoot(path);
         }
 
-        public override string[] GetFiles(string path)
+        public string[] GetFiles(string path)
         {
             return Directory.GetFiles(path);
         }
 
-        public override string[] GetFiles(string path, string searchPattern)
+        public string[] GetFiles(string path, string searchPattern)
         {
             return Directory.GetFiles(path, searchPattern);
         }
 
-        public override string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
+        public string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             return Directory.GetFiles(path, searchPattern, searchOption);
         }
 
-        public override string[] GetFileSystemEntries(string path)
+        public string[] GetFileSystemEntries(string path)
         {
             return Directory.GetFileSystemEntries(path);
         }
 
-        public override string[] GetFileSystemEntries(string path, string searchPattern)
+        public string[] GetFileSystemEntries(string path, string searchPattern)
         {
             return Directory.GetFileSystemEntries(path, searchPattern);
         }
 
-        public override DateTime GetLastAccessTime(string path)
+        public DateTime GetLastAccessTime(string path)
         {
             return Directory.GetLastAccessTime(path);
         }
 
-        public override DateTime GetLastAccessTimeUtc(string path)
+        public DateTime GetLastAccessTimeUtc(string path)
         {
             return Directory.GetLastAccessTimeUtc(path);
         }
 
-        public override DateTime GetLastWriteTime(string path)
+        public DateTime GetLastWriteTime(string path)
         {
             return Directory.GetLastWriteTime(path);
         }
 
-        public override DateTime GetLastWriteTimeUtc(string path)
+        public DateTime GetLastWriteTimeUtc(string path)
         {
             return Directory.GetLastWriteTimeUtc(path);
         }
 
 #if NET40
-        public override string[] GetLogicalDrives()
+        public string[] GetLogicalDrives()
         {
             return Directory.GetLogicalDrives();
         }
 #endif
 
-        public override DirectoryInfoBase GetParent(string path)
+        public IDirectoryInfo GetParent(string path)
         {
             return Directory.GetParent(path);
         }
 
-        public override void Move(string sourceDirName, string destDirName)
+        public void Move(string sourceDirName, string destDirName)
         {
             Directory.Move(sourceDirName, destDirName);
         }
 
-        public override void SetAccessControl(string path, DirectorySecurity directorySecurity)
+        public void SetAccessControl(string path, DirectorySecurity directorySecurity)
         {
             new DirectoryInfo(path).SetAccessControl(directorySecurity);
         }
 
-        public override void SetCreationTime(string path, DateTime creationTime)
+        public void SetCreationTime(string path, DateTime creationTime)
         {
             Directory.SetCreationTime(path, creationTime);
         }
 
-        public override void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
+        public void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
         {
             Directory.SetCreationTimeUtc(path, creationTimeUtc);
         }
 
-        public override void SetCurrentDirectory(string path)
+        public void SetCurrentDirectory(string path)
         {
             Directory.SetCurrentDirectory(path);
         }
 
-        public override void SetLastAccessTime(string path, DateTime lastAccessTime)
+        public void SetLastAccessTime(string path, DateTime lastAccessTime)
         {
             Directory.SetLastAccessTime(path, lastAccessTime);
         }
 
-        public override void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
+        public void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
         {
             Directory.SetLastAccessTimeUtc(path, lastAccessTimeUtc);
         }
 
-        public override void SetLastWriteTime(string path, DateTime lastWriteTime)
+        public void SetLastWriteTime(string path, DateTime lastWriteTime)
         {
             Directory.SetLastAccessTime(path, lastWriteTime);
         }
 
-        public override void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
+        public void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
         {
             Directory.SetLastWriteTimeUtc(path, lastWriteTimeUtc);
         }
 
-        public override IEnumerable<string> EnumerateDirectories(string path)
+        public IEnumerable<string> EnumerateDirectories(string path)
         {
             return Directory.EnumerateDirectories(path);
         }
 
-        public override IEnumerable<string> EnumerateDirectories(string path, string searchPattern)
+        public IEnumerable<string> EnumerateDirectories(string path, string searchPattern)
         {
             return Directory.EnumerateDirectories(path, searchPattern);
         }
 
-        public override IEnumerable<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption)
+        public IEnumerable<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption)
         {
             return Directory.EnumerateDirectories(path, searchPattern, searchOption);
         }
 
-        public override IEnumerable<string> EnumerateFiles(string path)
+        public IEnumerable<string> EnumerateFiles(string path)
         {
            return Directory.EnumerateFiles(path);
         }
  
-        public override IEnumerable<string> EnumerateFiles(string path, string searchPattern)
+        public IEnumerable<string> EnumerateFiles(string path, string searchPattern)
         {
             return Directory.EnumerateFiles(path, searchPattern);
         }
 
-        public override IEnumerable<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption)
+        public IEnumerable<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption)
         {
             return Directory.EnumerateFiles(path, searchPattern, searchOption);
         }
 
-        public override IEnumerable<string> EnumerateFileSystemEntries(string path)
+        public IEnumerable<string> EnumerateFileSystemEntries(string path)
         {
             return Directory.EnumerateFileSystemEntries(path);
         }
 
-        public override IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern)
+        public IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern)
         {
             return Directory.EnumerateFileSystemEntries(path, searchPattern);
         }
 
-        public override IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
+        public IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
         {
             return Directory.EnumerateFileSystemEntries(path, searchPattern, searchOption);
         }

@@ -5,7 +5,7 @@ using System.Security.AccessControl;
 namespace System.IO.Abstractions
 {
     [Serializable]
-    public class DirectoryInfoWrapper : DirectoryInfoBase
+    public class DirectoryInfoWrapper : IDirectoryInfo
     {
         private readonly DirectoryInfo instance;
 
@@ -14,228 +14,228 @@ namespace System.IO.Abstractions
             this.instance = instance ?? throw new ArgumentNullException(nameof(instance));
         }
 
-        public override void Delete()
+        public void Delete()
         {
             instance.Delete();
         }
 
-        public override void Refresh()
+        public void Refresh()
         {
             instance.Refresh();
         }
 
-        public override FileAttributes Attributes
+        public FileAttributes Attributes
         {
             get { return instance.Attributes; }
             set { instance.Attributes = value; }
         }
 
-        public override DateTime CreationTime
+        public DateTime CreationTime
         {
             get { return instance.CreationTime; }
             set { instance.CreationTime = value; }
         }
 
-        public override DateTime CreationTimeUtc
+        public DateTime CreationTimeUtc
         {
             get { return instance.CreationTimeUtc; }
             set { instance.CreationTimeUtc = value; }
         }
 
-        public override bool Exists
+        public bool Exists
         {
             get { return instance.Exists; }
         }
 
-        public override string Extension
+        public string Extension
         {
             get { return instance.Extension; }
         }
 
-        public override string FullName
+        public string FullName
         {
             get { return instance.FullName; }
         }
 
-        public override DateTime LastAccessTime
+        public DateTime LastAccessTime
         {
             get { return instance.LastAccessTime; }
             set { instance.LastAccessTime = value; }
         }
 
-        public override DateTime LastAccessTimeUtc
+        public DateTime LastAccessTimeUtc
         {
             get { return instance.LastAccessTimeUtc; }
             set { instance.LastAccessTimeUtc = value; }
         }
 
-        public override DateTime LastWriteTime
+        public DateTime LastWriteTime
         {
             get { return instance.LastWriteTime; }
             set { instance.LastWriteTime = value; }
         }
 
-        public override DateTime LastWriteTimeUtc
+        public DateTime LastWriteTimeUtc
         {
             get { return instance.LastWriteTimeUtc; }
             set { instance.LastWriteTimeUtc = value; }
         }
 
-        public override string Name
+        public string Name
         {
             get { return instance.Name; }
         }
 
-        public override void Create()
+        public void Create()
         {
             instance.Create();
         }
 
 #if NET40
-        public override void Create(DirectorySecurity directorySecurity)
+        public void Create(DirectorySecurity directorySecurity)
         {
             instance.Create(directorySecurity);
         }
 #endif
 
-        public override DirectoryInfoBase CreateSubdirectory(string path)
+        public IDirectoryInfo CreateSubdirectory(string path)
         {
             return new DirectoryInfoWrapper(instance.CreateSubdirectory(path));
         }
 
 #if NET40
-        public override DirectoryInfoBase CreateSubdirectory(string path, DirectorySecurity directorySecurity)
+        public IDirectoryInfo CreateSubdirectory(string path, DirectorySecurity directorySecurity)
         {
             return new DirectoryInfoWrapper(instance.CreateSubdirectory(path, directorySecurity));
         }
 #endif
 
-        public override void Delete(bool recursive)
+        public void Delete(bool recursive)
         {
             instance.Delete(recursive);
         }
 
-        public override IEnumerable<DirectoryInfoBase> EnumerateDirectories()
+        public IEnumerable<IDirectoryInfo> EnumerateDirectories()
         {
             return instance.EnumerateDirectories().Select(directoryInfo => new DirectoryInfoWrapper(directoryInfo));
         }
 
-        public override IEnumerable<DirectoryInfoBase> EnumerateDirectories(string searchPattern)
+        public IEnumerable<IDirectoryInfo> EnumerateDirectories(string searchPattern)
         {
             return instance.EnumerateDirectories(searchPattern).Select(directoryInfo => new DirectoryInfoWrapper(directoryInfo));
         }
 
-        public override IEnumerable<DirectoryInfoBase> EnumerateDirectories(string searchPattern, SearchOption searchOption)
+        public IEnumerable<IDirectoryInfo> EnumerateDirectories(string searchPattern, SearchOption searchOption)
         {
             return instance.EnumerateDirectories(searchPattern, searchOption).Select(directoryInfo => new DirectoryInfoWrapper(directoryInfo));
         }
 
-        public override IEnumerable<FileInfoBase> EnumerateFiles()
+        public IEnumerable<IFileInfo> EnumerateFiles()
         {
             return instance.EnumerateFiles().Select(fileInfo => new FileInfoWrapper(fileInfo));
         }
 
-        public override IEnumerable<FileInfoBase> EnumerateFiles(string searchPattern)
+        public IEnumerable<IFileInfo> EnumerateFiles(string searchPattern)
         {
             return instance.EnumerateFiles(searchPattern).Select(fileInfo => new FileInfoWrapper(fileInfo));
         }
 
-        public override IEnumerable<FileInfoBase> EnumerateFiles(string searchPattern, SearchOption searchOption)
+        public IEnumerable<IFileInfo> EnumerateFiles(string searchPattern, SearchOption searchOption)
         {
             return instance.EnumerateFiles(searchPattern, searchOption).Select(fileInfo => new FileInfoWrapper(fileInfo));
         }
 
-        public override IEnumerable<FileSystemInfoBase> EnumerateFileSystemInfos()
+        public IEnumerable<IFileSystemInfo> EnumerateFileSystemInfos()
         {
             return instance.EnumerateFileSystemInfos().WrapFileSystemInfos();
         }
 
-        public override IEnumerable<FileSystemInfoBase> EnumerateFileSystemInfos(string searchPattern)
+        public IEnumerable<IFileSystemInfo> EnumerateFileSystemInfos(string searchPattern)
         {
             return instance.EnumerateFileSystemInfos(searchPattern).WrapFileSystemInfos();
         }
 
-        public override IEnumerable<FileSystemInfoBase> EnumerateFileSystemInfos(string searchPattern, SearchOption searchOption)
+        public IEnumerable<IFileSystemInfo> EnumerateFileSystemInfos(string searchPattern, SearchOption searchOption)
         {
             return instance.EnumerateFileSystemInfos(searchPattern, searchOption).WrapFileSystemInfos();
         }
 
-        public override DirectorySecurity GetAccessControl()
+        public DirectorySecurity GetAccessControl()
         {
             return instance.GetAccessControl();
         }
 
-        public override DirectorySecurity GetAccessControl(AccessControlSections includeSections)
+        public DirectorySecurity GetAccessControl(AccessControlSections includeSections)
         {
             return instance.GetAccessControl(includeSections);
         }
 
-        public override DirectoryInfoBase[] GetDirectories()
+        public IDirectoryInfo[] GetDirectories()
         {
             return instance.GetDirectories().WrapDirectories();
         }
 
-        public override DirectoryInfoBase[] GetDirectories(string searchPattern)
+        public IDirectoryInfo[] GetDirectories(string searchPattern)
         {
             return instance.GetDirectories(searchPattern).WrapDirectories();
         }
 
-        public override DirectoryInfoBase[] GetDirectories(string searchPattern, SearchOption searchOption)
+        public IDirectoryInfo[] GetDirectories(string searchPattern, SearchOption searchOption)
         {
             return instance.GetDirectories(searchPattern, searchOption).WrapDirectories();
         }
 
-        public override FileInfoBase[] GetFiles()
+        public IFileInfo[] GetFiles()
         {
             return instance.GetFiles().WrapFiles();
         }
 
-        public override FileInfoBase[] GetFiles(string searchPattern)
+        public IFileInfo[] GetFiles(string searchPattern)
         {
             return instance.GetFiles(searchPattern).WrapFiles();
         }
 
-        public override FileInfoBase[] GetFiles(string searchPattern, SearchOption searchOption)
+        public IFileInfo[] GetFiles(string searchPattern, SearchOption searchOption)
         {
             return instance.GetFiles(searchPattern, searchOption).WrapFiles();
         }
 
-        public override FileSystemInfoBase[] GetFileSystemInfos()
+        public IFileSystemInfo[] GetFileSystemInfos()
         {
             return instance.GetFileSystemInfos().WrapFileSystemInfos();
         }
 
-        public override FileSystemInfoBase[] GetFileSystemInfos(string searchPattern)
+        public IFileSystemInfo[] GetFileSystemInfos(string searchPattern)
         {
             return instance.GetFileSystemInfos(searchPattern).WrapFileSystemInfos();
         }
 
-        public override FileSystemInfoBase[] GetFileSystemInfos(string searchPattern, SearchOption searchOption)
+        public IFileSystemInfo[] GetFileSystemInfos(string searchPattern, SearchOption searchOption)
         {
             return instance.GetFileSystemInfos(searchPattern, searchOption).WrapFileSystemInfos();
         }
 
-        public override void MoveTo(string destDirName)
+        public void MoveTo(string destDirName)
         {
             instance.MoveTo(destDirName);
         }
 
-        public override void SetAccessControl(DirectorySecurity directorySecurity)
+        public void SetAccessControl(DirectorySecurity directorySecurity)
         {
             instance.SetAccessControl(directorySecurity);
         }
 
-        public override DirectoryInfoBase Parent
+        public IDirectoryInfo Parent
         {
             get { return instance.Parent; }
         }
 
-        public override DirectoryInfoBase Root
+        public IDirectoryInfo Root
         {
             get { return instance.Root; }
         }
 
-        public override string ToString()
+        public string ToString()
         {
             return instance.ToString();
         }

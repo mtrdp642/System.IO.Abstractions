@@ -6,25 +6,25 @@ namespace System.IO.Abstractions
 {
     internal static class Converters
     {
-        internal static IEnumerable<FileSystemInfoBase> WrapFileSystemInfos(this IEnumerable<FileSystemInfo> input)
+        internal static IEnumerable<IFileSystemInfo> WrapFileSystemInfos(this IEnumerable<FileSystemInfo> input)
             => input.Select(WrapFileSystemInfo);
 
-        internal static FileSystemInfoBase[] WrapFileSystemInfos(this FileSystemInfo[] input)
+        internal static IFileSystemInfo[] WrapFileSystemInfos(this FileSystemInfo[] input)
             => input.Select(WrapFileSystemInfo).ToArray();
 
-        internal static IEnumerable<DirectoryInfoBase> WrapDirectories(this IEnumerable<DirectoryInfo> input) 
+        internal static IEnumerable<IDirectoryInfo> WrapDirectories(this IEnumerable<DirectoryInfo> input) 
             => input.Select(WrapDirectoryInfo);
 
-        internal static DirectoryInfoBase[] WrapDirectories(this DirectoryInfo[] input)
+        internal static IDirectoryInfo[] WrapDirectories(this DirectoryInfo[] input)
             => input.Select(WrapDirectoryInfo).ToArray();
 
-        internal static IEnumerable<FileInfoBase> WrapFiles(this IEnumerable<FileInfo> input) 
+        internal static IEnumerable<IFileInfo> WrapFiles(this IEnumerable<FileInfo> input) 
             => input.Select(WrapFileInfo);
 
-        internal static FileInfoBase[] WrapFiles(this FileInfo[] input) 
+        internal static IFileInfo[] WrapFiles(this FileInfo[] input) 
             => input.Select(WrapFileInfo).ToArray();
         
-        private static FileSystemInfoBase WrapFileSystemInfo(FileSystemInfo item)
+        private static IFileSystemInfo WrapFileSystemInfo(FileSystemInfo item)
         {
             if (item is FileInfo)
             {
@@ -44,8 +44,8 @@ namespace System.IO.Abstractions
             }
         }
 
-        private static FileInfoBase WrapFileInfo(FileInfo f) => (FileInfoBase)f;
+        private static IFileInfo WrapFileInfo(FileInfo f) => (FileInfoBase)f;
     
-        private static DirectoryInfoBase WrapDirectoryInfo(DirectoryInfo d) => (DirectoryInfoBase)d;
+        private static IDirectoryInfo WrapDirectoryInfo(DirectoryInfo d) => (IDirectoryInfo)d;
     }
 }

@@ -3,7 +3,7 @@
 namespace System.IO.Abstractions
 {
     [Serializable]
-    public class FileInfoWrapper : FileInfoBase
+    public class FileInfoWrapper : IFileInfo
     {
         private readonly FileInfo instance;
 
@@ -12,194 +12,194 @@ namespace System.IO.Abstractions
             this.instance = instance ?? throw new ArgumentNullException(nameof(instance));
         }
 
-        public override void Delete()
+        public void Delete()
         {
             instance.Delete();
         }
 
-        public override void Refresh()
+        public void Refresh()
         {
             instance.Refresh();
         }
 
-        public override FileAttributes Attributes
+        public FileAttributes Attributes
         {
             get { return instance.Attributes; }
             set { instance.Attributes = value; }
         }
 
-        public override DateTime CreationTime
+        public DateTime CreationTime
         {
             get { return instance.CreationTime; }
             set { instance.CreationTime = value; }
         }
 
-        public override DateTime CreationTimeUtc
+        public DateTime CreationTimeUtc
         {
             get { return instance.CreationTimeUtc; }
             set { instance.CreationTimeUtc = value; }
         }
 
-        public override bool Exists
+        public bool Exists
         {
             get { return instance.Exists; }
         }
 
-        public override string Extension
+        public string Extension
         {
             get { return instance.Extension; }
         }
 
-        public override string FullName
+        public string FullName
         {
             get { return instance.FullName; }
         }
 
-        public override DateTime LastAccessTime
+        public DateTime LastAccessTime
         {
             get { return instance.LastAccessTime; }
             set { instance.LastAccessTime = value; }
         }
 
-        public override DateTime LastAccessTimeUtc
+        public DateTime LastAccessTimeUtc
         {
             get { return instance.LastAccessTimeUtc; }
             set { instance.LastAccessTimeUtc = value; }
         }
 
-        public override DateTime LastWriteTime
+        public DateTime LastWriteTime
         {
             get { return instance.LastWriteTime; }
             set { instance.LastWriteTime = value; }
         }
 
-        public override DateTime LastWriteTimeUtc
+        public DateTime LastWriteTimeUtc
         {
             get { return instance.LastWriteTimeUtc; }
             set { instance.LastWriteTimeUtc = value; }
         }
 
-        public override string Name
+        public string Name
         {
             get { return instance.Name; }
         }
 
-        public override StreamWriter AppendText()
+        public StreamWriter AppendText()
         {
             return instance.AppendText();
         }
 
-        public override FileInfoBase CopyTo(string destFileName)
+        public IFileInfo CopyTo(string destFileName)
         {
             return instance.CopyTo(destFileName);
         }
 
-        public override FileInfoBase CopyTo(string destFileName, bool overwrite)
+        public IFileInfo CopyTo(string destFileName, bool overwrite)
         {
             return instance.CopyTo(destFileName, overwrite);
         }
 
-        public override Stream Create()
+        public Stream Create()
         {
             return instance.Create();
         }
 
-        public override StreamWriter CreateText()
+        public StreamWriter CreateText()
         {
             return instance.CreateText();
         }
 
 #if NET40
-        public override void Decrypt()
+        public void Decrypt()
         {
             instance.Decrypt();
         }
 
-        public override void Encrypt()
+        public void Encrypt()
         {
             instance.Encrypt();
         }
 #endif
 
-        public override FileSecurity GetAccessControl()
+        public FileSecurity GetAccessControl()
         {
             return instance.GetAccessControl();
         }
 
-        public override FileSecurity GetAccessControl(AccessControlSections includeSections)
+        public FileSecurity GetAccessControl(AccessControlSections includeSections)
         {
             return instance.GetAccessControl(includeSections);
         }
 
-        public override void MoveTo(string destFileName)
+        public void MoveTo(string destFileName)
         {
             instance.MoveTo(destFileName);
         }
 
-        public override Stream Open(FileMode mode)
+        public Stream Open(FileMode mode)
         {
             return instance.Open(mode);
         }
 
-        public override Stream Open(FileMode mode, FileAccess access)
+        public Stream Open(FileMode mode, FileAccess access)
         {
             return instance.Open(mode, access);
         }
 
-        public override Stream Open(FileMode mode, FileAccess access, FileShare share)
+        public Stream Open(FileMode mode, FileAccess access, FileShare share)
         {
             return instance.Open(mode, access, share);
         }
 
-        public override Stream OpenRead()
+        public Stream OpenRead()
         {
             return instance.OpenRead();
         }
 
-        public override StreamReader OpenText()
+        public StreamReader OpenText()
         {
             return instance.OpenText();
         }
 
-        public override Stream OpenWrite()
+        public Stream OpenWrite()
         {
             return instance.OpenWrite();
         }
 
 #if NET40
-        public override FileInfoBase Replace(string destinationFileName, string destinationBackupFileName)
+        public IFileInfo Replace(string destinationFileName, string destinationBackupFileName)
         {
             return instance.Replace(destinationFileName, destinationBackupFileName);
         }
 
-        public override FileInfoBase Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
+        public IFileInfo Replace(string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
         {
             return instance.Replace(destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
         }
 #endif
 
-        public override void SetAccessControl(FileSecurity fileSecurity)
+        public void SetAccessControl(FileSecurity fileSecurity)
         {
             instance.SetAccessControl(fileSecurity);
         }
 
-        public override DirectoryInfoBase Directory
+        public IDirectoryInfo Directory
         {
             get { return instance.Directory; }
         }
 
-        public override string DirectoryName
+        public string DirectoryName
         {
             get { return instance.DirectoryName; }
         }
 
-        public override bool IsReadOnly
+        public bool IsReadOnly
         {
             get { return instance.IsReadOnly; }
             set { instance.IsReadOnly = value; }
         }
 
-        public override long Length
+        public long Length
         {
             get { return instance.Length; }
         }

@@ -1,7 +1,6 @@
 ﻿namespace System.IO.Abstractions
 {
-    [Serializable]
-    public abstract class DriveInfoBase
+    public interface IDriveInfo
     {
         /// <inheritdoc cref="DriveInfo.AvailableFreeSpace"/>
         /// <summary>
@@ -14,7 +13,7 @@
         /// </remarks>
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public virtual long AvailableFreeSpace { get; protected set; }
+        long AvailableFreeSpace { get; set; }
 
         /// <inheritdoc cref="DriveInfo.DriveFormat"/>
         /// <summary>
@@ -27,7 +26,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public virtual string DriveFormat { get; protected set; }
+        string DriveFormat { get; set; }
 
         /// <inheritdoc cref="DriveInfo.DriveType"/>
         /// <summary>
@@ -38,7 +37,7 @@
         /// The DriveType property indicates whether a drive is one of the following: CDRom, Fixed, Network, NoRootDirectory, Ram, Removable, or Unknown.
         /// These values are described in the DriveType enumeration.
         /// </remarks>
-        public virtual DriveType DriveType { get; protected set; }
+        DriveType DriveType { get; set; }
 
         /// <inheritdoc cref="DriveInfo.IsReady"/>
         /// <summary>
@@ -55,7 +54,7 @@
         /// Between the time that your code checks IsReady and then accesses one of the other properties (even if the access occurs immediately after the check),
         ///  a drive may have been disconnected or a disk may have been removed.
         /// </remarks>
-        public virtual bool IsReady { get; protected set; }
+        bool IsReady { get; set; }
 
         /// <inheritdoc cref="DriveInfo.Name"/>
         /// <summary>
@@ -65,14 +64,14 @@
         /// <remarks>
         /// This property is the name assigned to the drive, such as C:\ or E:\.
         /// </remarks>
-        public virtual string Name { get; protected set; }
+        string Name { get; set; }
 
         /// <inheritdoc cref="DriveInfo.RootDirectory"/>
         /// <summary>
         /// Gets or sets the root directory of a drive.
         /// </summary>
         /// <value>An object that contains the root directory of the drive.</value>
-        public virtual DirectoryInfoBase RootDirectory { get; protected set; }
+        IDirectoryInfo RootDirectory { get; set; }
 
         /// <inheritdoc cref="DriveInfo.TotalFreeSpace"/>
         /// <summary>
@@ -83,7 +82,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public virtual long TotalFreeSpace { get; protected set; }
+        long TotalFreeSpace { get; set; }
 
         /// <inheritdoc cref="DriveInfo.TotalSize"/>
         /// <summary>
@@ -96,7 +95,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public virtual long TotalSize { get; protected set; }
+        long TotalSize { get; set; }
 
         /// <inheritdoc cref="DriveInfo.VolumeLabel"/>
         /// <summary>
@@ -114,20 +113,6 @@
         /// -or-
         /// Access to the drive information is denied.
         /// </exception>
-        public virtual string VolumeLabel { get; set; }
-
-        /// <summary>
-        /// Converts a <see cref="DriveInfo"/> into a <see cref="DriveInfoBase"/>.
-        /// </summary>
-        /// <param name="driveInfo">The drive info to be converted.</param>
-        public static implicit operator DriveInfoBase(DriveInfo driveInfo)
-        {
-            if (driveInfo == null)
-            {
-                return null;
-            }
-
-            return new DriveInfoWrapper(driveInfo);
-        }
+        string VolumeLabel { get; set; }
     }
 }

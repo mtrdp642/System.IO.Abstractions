@@ -3,14 +3,14 @@
     [Serializable]
     public class FileSystem : IFileSystem
     {
-        DirectoryBase directory;
-        public DirectoryBase Directory
+        IDirectory directory;
+        public IDirectory Directory
         {
             get { return directory ?? (directory = new DirectoryWrapper()); }
         }
 
-        FileBase file;
-        public FileBase File
+        IFile file;
+        public IFile File
         {
             get { return file ?? (file = new FileWrapper()); }
         }
@@ -27,8 +27,8 @@
             get { return fileStreamFactory ?? (fileStreamFactory = new FileStreamFactory()); }
         }
 
-        PathBase path;
-        public PathBase Path
+        IPath path;
+        public IPath Path
         {
             get { return path ?? (path = new PathWrapper()); }
         }

@@ -1,46 +1,45 @@
 ﻿namespace System.IO.Abstractions
 {
     /// <inheritdoc cref="FileSystemInfo"/>
-    [Serializable]
-    public abstract class FileSystemInfoBase
+    public interface IFileSystemInfo
     {
         /// <inheritdoc cref="FileSystemInfo.Delete"/>
-        public abstract void Delete();
+        void Delete();
 
         /// <inheritdoc cref="FileSystemInfo.Refresh"/>
-        public abstract void Refresh();
+        void Refresh();
 
         /// <inheritdoc cref="FileSystemInfo.Attributes"/>
-        public abstract FileAttributes Attributes { get; set; }
+        FileAttributes Attributes { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.CreationTime"/>
-        public abstract DateTime CreationTime { get; set; }
+        DateTime CreationTime { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.CreationTimeUtc"/>
-        public abstract DateTime CreationTimeUtc { get; set; }
+        DateTime CreationTimeUtc { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.Exists"/>
-        public abstract bool Exists { get; }
+        bool Exists { get; }
 
         /// <inheritdoc cref="FileSystemInfo.Extension"/>
-        public abstract string Extension { get; }
+        string Extension { get; }
 
         /// <inheritdoc cref="FileSystemInfo.FullName"/>
-        public abstract string FullName { get; }
+        string FullName { get; }
 
         /// <inheritdoc cref="FileSystemInfo.LastAccessTime"/>
-        public abstract DateTime LastAccessTime { get; set; }
+        DateTime LastAccessTime { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.LastAccessTimeUtc"/>
-        public abstract DateTime LastAccessTimeUtc { get; set; }
+        DateTime LastAccessTimeUtc { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.LastWriteTime"/>
-        public abstract DateTime LastWriteTime { get; set; }
+        DateTime LastWriteTime { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.LastWriteTimeUtc"/>
-        public abstract DateTime LastWriteTimeUtc { get; set; }
+        DateTime LastWriteTimeUtc { get; set; }
 
         /// <inheritdoc cref="FileSystemInfo.Name"/>
-        public abstract string Name { get; }
+        string Name { get; }
     }
 }

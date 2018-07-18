@@ -4,7 +4,7 @@
     /// The wrapper for a <see cref="DriveInfo"/>.
     /// </summary>
     [Serializable]
-    public class DriveInfoWrapper : DriveInfoBase
+    public class DriveInfoWrapper : IDriveInfo
     {
         /// <summary>
         /// The instance of the real <see cref="FileSystem"/>.
@@ -27,7 +27,7 @@
         /// <remarks>
         /// This property is the name assigned to the drive, such as C:\ or E:\.
         /// </remarks>
-        public override string Name
+        public string Name
         {
             get { return instance.Name; }
         }
@@ -40,7 +40,7 @@
         /// The DriveType property indicates whether a drive is one of the following: CDRom, Fixed, Network, NoRootDirectory, Ram, Removable, or Unknown.
         /// These values are described in the DriveType enumeration.
         /// </remarks>
-        public override DriveType DriveType
+        public DriveType DriveType
         {
             get { return instance.DriveType; }
         }
@@ -55,7 +55,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public override string DriveFormat
+        public string DriveFormat
         {
             get { return instance.DriveFormat; }
         }
@@ -74,7 +74,7 @@
         /// Between the time that your code checks IsReady and then accesses one of the other properties (even if the access occurs immediately after the check),
         ///  a drive may have been disconnected or a disk may have been removed.
         /// </remarks>
-        public override bool IsReady
+        public bool IsReady
         {
             get { return instance.IsReady; }
         }
@@ -89,7 +89,7 @@
         /// </remarks>
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public override long AvailableFreeSpace
+        public long AvailableFreeSpace
         {
             get { return instance.AvailableFreeSpace; }
         }
@@ -102,7 +102,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public override long TotalFreeSpace
+        public long TotalFreeSpace
         {
             get { return instance.TotalFreeSpace; }
         }
@@ -117,7 +117,7 @@
         /// <exception cref="UnauthorizedAccessException">Thrown if the access to the drive information is denied.</exception>
         /// <exception cref="DriveNotFoundException">Thrown if the drive does not exist or is not mapped.</exception>
         /// <exception cref="IOException">Thrown if an I/O error occurred (for example, a disk error or a drive was not ready).</exception>
-        public override long TotalSize
+        public long TotalSize
         {
             get { return instance.TotalSize; }
         }
@@ -126,7 +126,7 @@
         /// Gets or sets the root directory of a drive.
         /// </summary>
         /// <value>An object that contains the root directory of the drive.</value>
-        public override DirectoryInfoBase RootDirectory
+        public IDirectoryInfo RootDirectory
         {
             get { return instance.RootDirectory; }
         }
@@ -146,16 +146,28 @@
         /// -or-
         /// Access to the drive information is denied.
         /// </exception>
-        public override string VolumeLabel
+        public string VolumeLabel
         {
             get { return instance.VolumeLabel; }
 
             set { instance.VolumeLabel = value; }
         }
 
-        public override string ToString()
+        string IDriveInfo.DriveFormat { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        DriveType IDriveInfo.DriveType { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        bool IDriveInfo.IsReady { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        string IDriveInfo.Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        IDirectoryInfo IDriveInfo.RootDirectory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        long IDriveInfo.TotalFreeSpace { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        long IDriveInfo.TotalSize { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        string IDriveInfo.VolumeLabel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        long IDriveInfo.AvailableFreeSpace { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public string ToString()
         {
             return instance.ToString();
         }
+
+        
     }
 }

@@ -6,100 +6,100 @@ using System.IO;
 namespace System.IO.Abstractions
 {
     [Serializable]
-    public class FileWrapper : FileBase
+    public class FileWrapper : IFile
     {
-        public override void AppendAllLines(string path, IEnumerable<string> contents)
+        public void AppendAllLines(string path, IEnumerable<string> contents)
         {
             File.AppendAllLines(path, contents);
         }
 
-        public override void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
+        public void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
         {
             File.AppendAllLines(path, contents, encoding);
         }
 
-        public override void AppendAllText(string path, string contents)
+        public void AppendAllText(string path, string contents)
         {
             File.AppendAllText(path, contents);
         }
 
-        public override void AppendAllText(string path, string contents, Encoding encoding)
+        public void AppendAllText(string path, string contents, Encoding encoding)
         {
             File.AppendAllText(path, contents, encoding);
         }
 
-        public override StreamWriter AppendText(string path)
+        public StreamWriter AppendText(string path)
         {
             return File.AppendText(path);
         }
 
-        public override void Copy(string sourceFileName, string destFileName)
+        public void Copy(string sourceFileName, string destFileName)
         {
             File.Copy(sourceFileName, destFileName);
         }
 
-        public override void Copy(string sourceFileName, string destFileName, bool overwrite)
+        public void Copy(string sourceFileName, string destFileName, bool overwrite)
         {
             File.Copy(sourceFileName, destFileName, overwrite);
         }
 
-        public override Stream Create(string path)
+        public Stream Create(string path)
         {
             return File.Create(path);
         }
 
-        public override Stream Create(string path, int bufferSize)
+        public Stream Create(string path, int bufferSize)
         {
             return File.Create(path, bufferSize);
         }
 
-        public override Stream Create(string path, int bufferSize, FileOptions options)
+        public Stream Create(string path, int bufferSize, FileOptions options)
         {
             return File.Create(path, bufferSize, options);
         }
 
 #if NET40
-        public override Stream Create(string path, int bufferSize, FileOptions options, FileSecurity fileSecurity)
+        public Stream Create(string path, int bufferSize, FileOptions options, FileSecurity fileSecurity)
         {
             return File.Create(path, bufferSize, options, fileSecurity);
         }
 #endif
 
-        public override StreamWriter CreateText(string path)
+        public StreamWriter CreateText(string path)
         {
             return File.CreateText(path);
         }
 
 #if NET40
-        public override void Decrypt(string path)
+        public void Decrypt(string path)
         {
             File.Decrypt(path);
         }
 #endif
 
-        public override void Delete(string path)
+        public void Delete(string path)
         {
             File.Delete(path);
         }
 
 #if NET40
-        public override void Encrypt(string path)
+        public void Encrypt(string path)
         {
             File.Encrypt(path);
         }
 #endif
 
-        public override bool Exists(string path)
+        public bool Exists(string path)
         {
             return File.Exists(path);
         }
 
-        public override FileSecurity GetAccessControl(string path)
+        public FileSecurity GetAccessControl(string path)
         {
             return new FileInfo(path).GetAccessControl();
         }
 
-        public override FileSecurity GetAccessControl(string path, AccessControlSections includeSections)
+        public FileSecurity GetAccessControl(string path, AccessControlSections includeSections)
         {
             return new FileInfo(path).GetAccessControl(includeSections);
         }
@@ -116,159 +116,159 @@ namespace System.IO.Abstractions
         /// <exception cref="DirectoryNotFoundException"><paramref name="path"/> represents a directory and is invalid, such as being on an unmapped drive, or the directory cannot be found.</exception>
         /// <exception cref="IOException">This file is being used by another process.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have the required permission.</exception>
-        public override FileAttributes GetAttributes(string path)
+        public FileAttributes GetAttributes(string path)
         {
             return File.GetAttributes(path);
         }
 
-        public override DateTime GetCreationTime(string path)
+        public DateTime GetCreationTime(string path)
         {
             return File.GetCreationTime(path);
         }
 
-        public override DateTime GetCreationTimeUtc(string path)
+        public DateTime GetCreationTimeUtc(string path)
         {
             return File.GetCreationTimeUtc(path);
         }
 
-        public override DateTime GetLastAccessTime(string path)
+        public DateTime GetLastAccessTime(string path)
         {
             return File.GetLastAccessTime(path);
         }
 
-        public override DateTime GetLastAccessTimeUtc(string path)
+        public DateTime GetLastAccessTimeUtc(string path)
         {
             return File.GetLastAccessTimeUtc(path);
         }
 
-        public override DateTime GetLastWriteTime(string path)
+        public DateTime GetLastWriteTime(string path)
         {
             return File.GetLastWriteTime(path);
         }
 
-        public override DateTime GetLastWriteTimeUtc(string path)
+        public DateTime GetLastWriteTimeUtc(string path)
         {
             return File.GetLastWriteTimeUtc(path);
         }
 
-        public override void Move(string sourceFileName, string destFileName)
+        public void Move(string sourceFileName, string destFileName)
         {
             File.Move(sourceFileName, destFileName);
         }
 
-        public override Stream Open(string path, FileMode mode)
+        public Stream Open(string path, FileMode mode)
         {
             return File.Open(path, mode);
         }
 
-        public override Stream Open(string path, FileMode mode, FileAccess access)
+        public Stream Open(string path, FileMode mode, FileAccess access)
         {
             return File.Open(path, mode, access);
         }
 
-        public override Stream Open(string path, FileMode mode, FileAccess access, FileShare share)
+        public Stream Open(string path, FileMode mode, FileAccess access, FileShare share)
         {
             return File.Open(path, mode, access, share);
         }
 
-        public override Stream OpenRead(string path)
+        public Stream OpenRead(string path)
         {
             return File.OpenRead(path);
         }
 
-        public override StreamReader OpenText(string path)
+        public StreamReader OpenText(string path)
         {
             return File.OpenText(path);
         }
 
-        public override Stream OpenWrite(string path)
+        public Stream OpenWrite(string path)
         {
             return File.OpenWrite(path);
         }
 
-        public override byte[] ReadAllBytes(string path)
+        public byte[] ReadAllBytes(string path)
         {
             return File.ReadAllBytes(path);
         }
 
-        public override string[] ReadAllLines(string path)
+        public string[] ReadAllLines(string path)
         {
             return File.ReadAllLines(path);
         }
 
-        public override string[] ReadAllLines(string path, Encoding encoding)
+        public string[] ReadAllLines(string path, Encoding encoding)
         {
             return File.ReadAllLines(path, encoding);
         }
 
-        public override string ReadAllText(string path)
+        public string ReadAllText(string path)
         {
             return File.ReadAllText(path);
         }
 
-        public override string ReadAllText(string path, Encoding encoding)
+        public string ReadAllText(string path, Encoding encoding)
         {
             return File.ReadAllText(path, encoding);
         }
 
-        public override IEnumerable<string> ReadLines(string path)
+        public IEnumerable<string> ReadLines(string path)
         {
             return File.ReadLines(path);
         }
 
-        public override IEnumerable<string> ReadLines(string path, Encoding encoding)
+        public IEnumerable<string> ReadLines(string path, Encoding encoding)
         {
             return File.ReadLines(path, encoding);
         }
 
 #if NET40
-        public override void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName)
+        public void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName)
         {
             File.Replace(sourceFileName, destinationFileName, destinationBackupFileName);
         }
 
-        public override void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
+        public void Replace(string sourceFileName, string destinationFileName, string destinationBackupFileName, bool ignoreMetadataErrors)
         {
             File.Replace(sourceFileName, destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
         }
 #endif
 
-        public override void SetAccessControl(string path, FileSecurity fileSecurity)
+        public void SetAccessControl(string path, FileSecurity fileSecurity)
         {
             new FileInfo(path).SetAccessControl(fileSecurity);
         }
 
-        public override void SetAttributes(string path, FileAttributes fileAttributes)
+        public void SetAttributes(string path, FileAttributes fileAttributes)
         {
             File.SetAttributes(path, fileAttributes);
         }
 
-        public override void SetCreationTime(string path, DateTime creationTime)
+        public void SetCreationTime(string path, DateTime creationTime)
         {
             File.SetCreationTime(path, creationTime);
         }
 
-        public override void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
+        public void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
         {
             File.SetCreationTimeUtc(path, creationTimeUtc);
         }
 
-        public override void SetLastAccessTime(string path, DateTime lastAccessTime)
+        public void SetLastAccessTime(string path, DateTime lastAccessTime)
         {
             File.SetLastAccessTime(path, lastAccessTime);
         }
 
-        public override void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
+        public void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
         {
             File.SetLastAccessTimeUtc(path, lastAccessTimeUtc);
         }
 
-        public override void SetLastWriteTime(string path, DateTime lastWriteTime)
+        public void SetLastWriteTime(string path, DateTime lastWriteTime)
         {
             File.SetLastWriteTime(path, lastWriteTime);
         }
 
-        public override void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
+        public void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
         {
             File.SetLastWriteTimeUtc(path, lastWriteTimeUtc);
         }
@@ -302,7 +302,7 @@ namespace System.IO.Abstractions
         /// <remarks>
         /// Given a byte array and a file path, this method opens the specified file, writes the contents of the byte array to the file, and then closes the file.
         /// </remarks>
-        public override void WriteAllBytes(string path, byte[] bytes)
+        public void WriteAllBytes(string path, byte[] bytes)
         {
             File.WriteAllBytes(path, bytes);
         }
@@ -340,7 +340,7 @@ namespace System.IO.Abstractions
         ///     You can use this method to create the contents for a collection class that takes an <see cref="IEnumerable{T}"/> in its constructor, such as a <see cref="List{T}"/>, <see cref="HashSet{T}"/>, or a <see cref="SortedSet{T}"/> class.
         /// </para>
         /// </remarks>
-        public override void WriteAllLines(string path, IEnumerable<string> contents)
+        public void WriteAllLines(string path, IEnumerable<string> contents)
         {
             File.WriteAllLines(path, contents);
         }
@@ -387,7 +387,7 @@ namespace System.IO.Abstractions
         /// </list>
         /// </para>
         /// </remarks>
-        public override void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
+        public void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
         {
             File.WriteAllLines(path, contents, encoding);
         }
@@ -429,7 +429,7 @@ namespace System.IO.Abstractions
         ///     and then closes the file.
         /// </para>
         /// </remarks>
-        public override void WriteAllLines(string path, string[] contents)
+        public void WriteAllLines(string path, string[] contents)
         {
             File.WriteAllLines(path, contents);
         }
@@ -469,7 +469,7 @@ namespace System.IO.Abstractions
         ///     and then closes the file.
         /// </para>
         /// </remarks>
-        public override void WriteAllLines(string path, string[] contents, Encoding encoding)
+        public void WriteAllLines(string path, string[] contents, Encoding encoding)
         {
             File.WriteAllLines(path, contents, encoding);
         }
@@ -506,7 +506,7 @@ namespace System.IO.Abstractions
         /// Given a string and a file path, this method opens the specified file, writes the string to the file, and then closes the file.
         /// </para>
         /// </remarks>
-        public override void WriteAllText(string path, string contents)
+        public void WriteAllText(string path, string contents)
         {
             File.WriteAllText(path, contents);
         }
@@ -541,7 +541,7 @@ namespace System.IO.Abstractions
         /// Given a string and a file path, this method opens the specified file, writes the string to the file using the specified encoding, and then closes the file.
         /// The file handle is guaranteed to be closed by this method, even if exceptions are raised.
         /// </remarks>
-        public override void WriteAllText(string path, string contents, Encoding encoding)
+        public void WriteAllText(string path, string contents, Encoding encoding)
         {
             File.WriteAllText(path, contents, encoding);
         }
